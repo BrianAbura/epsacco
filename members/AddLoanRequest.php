@@ -20,8 +20,8 @@ $GuarantorAmount = str_replace(',','', $GuarantorAmount);
 
 $Member = DB::queryFirstRow('SELECT * from members where AccNumber=%s', $AccNumber);
 
-if($Principal > 15000000){
-	$_SESSION['Error'] = "You cannot make a loan request of more than <b>UGX 15,000,000.</b>";
+if($Principal > 20000000){
+	$_SESSION['Error'] = "You cannot make a loan request of more than <b>UGX 20,000,000.</b>";
 	header('Location: requestLoan.php');
 	exit();
 }
