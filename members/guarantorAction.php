@@ -9,7 +9,7 @@ $Comments = htmlspecialchars(( isset( $_REQUEST['Comments'] ) )?  $_REQUEST['Com
 $guarantor_request = DB::queryFirstRow('SELECT * from guarantors where Id=%s', $GuarantorId);
 $loan = DB::queryFirstRow('SELECT * from loanrequests where LoanId=%s', $guarantor_request['LoanId']);
 
-$guarantor = DB::queryFirstRow('SELECT * from members where Id=%s', $guarantor_request['AccNumber']);
+$guarantor = DB::queryFirstRow('SELECT * from members where AccNumber=%s', $guarantor_request['AccNumber']);
 $member = DB::queryFirstRow('SELECT * from members where AccNumber=%s', $loan['AccNumber']);
 
     $GurantAction = array(
