@@ -1,151 +1,149 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <?php include('headLinks.php'); ?>
-  <style>
-    .table-striped>tbody>tr:nth-child(even)>td,
-    .table-striped>tbody>tr:nth-child(even)>th {
-      background-color: #c8f9d3;
-    }
+<?php include('headLinks.php');?>
+	<style>
+	.table-striped>tbody>tr:nth-child(even)>td, 
+	.table-striped>tbody>tr:nth-child(even)>th {
+	   background-color: #c8f9d3;
+	 }
+   .text-muted{
+     padding-bottom: 3px;
+     color:royalblue;
+   }
+   .form-control{
+		color:blue;
+	}
 
-    .text-muted {
-      padding-bottom: 3px;
-      color: royalblue;
-    }
-
-    .form-control {
-      color: blue;
-    }
-  </style>
+	</style>
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
-  <div class="wrapper">
+<div class="wrapper">
 
-    <?php include('header.php'); ?>
+<?php include('header.php');?>
 
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">NAVIGATION</li>
-          <li>
-            <a href="dashboard.php">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="treeview active">
-            <a href="#">
-              <i class="fa fa-users"></i>
-              <span>Members</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active"><a href="allMembers.php"><i class="fa fa-circle-o"></i> All Members</a></li>
-              <li><a href="inactiveMembers.php"><i class="fa fa-circle-o"></i> Inactive Members</a></li>
-              <li><a href="administrativeMembers.php"><i class="fa fa-circle-o"></i> Administrative Members</a></li>
-            </ul>
-          </li>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">NAVIGATION</li>
+        <li>
+          <a href="dashboard.php">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>Members</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="allMembers.php"><i class="fa fa-circle-o"></i> All Members</a></li>
+			      <li><a href="inactiveMembers.php"><i class="fa fa-circle-o"></i> Inactive Members</a></li>
+            <li><a href="administrativeMembers.php"><i class="fa fa-circle-o"></i> Administrative Members</a></li>
+          </ul>
+        </li>
 
-          <!--Investments-->
-          <li>
-            <a href="Investments.php">
-              <i class="fa fa-money"></i>
-              <span>Investments</span>
-            </a>
-          </li>
+            <!--Investments-->	
+        <li>
+          <a href="Investments.php">
+            <i class="fa fa-money"></i>
+            <span>Investments</span>
+          </a>
+        </li>
+    
+        <!--Shares-->	
+        	<li>
+          <a href="welfare.php">
+            <i class="fa fa-star"></i>
+            <span>Welfare</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+        </li> <!-- //Shares-->	
 
-          <!--Shares-->
-          <li>
-            <a href="welfare.php">
-              <i class="fa fa-star"></i>
-              <span>Welfare</span>
-              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-            </a>
-          </li> <!-- //Shares-->
+        <!--Savings-->	
+        <li>
+          <a href="savings.php">
+          <span class="glyphicon glyphicon-piggy-bank"></span>
+            <span>Savings</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+        </li> <!-- //Savings-->	
+        
+      	<!--Loan Requests-->	
+        <li>
+          <a href="loanRequests.php">
+          <span class="glyphicon glyphicon-list-alt"></span>
+            <span>Loan Requests</span>
+            <?php 
+            if(PendingApprovals($user['Role']) != 0)
+            {
+            ?>
+            <small class="label pull-right bg-red">
+            <?php 
+            echo number_format(PendingApprovals($user['Role']));
+            ?>
+            </small>
+            <?php 
+            }
+            ?>
+          </a>
+        </li>
 
-          <!--Savings-->
-          <li>
-            <a href="savings.php">
-              <span class="glyphicon glyphicon-piggy-bank"></span>
-              <span>Savings</span>
-              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-            </a>
-          </li> <!-- //Savings-->
-
-          <!--Loan Requests-->
-          <li>
-            <a href="loanRequests.php">
-              <span class="glyphicon glyphicon-list-alt"></span>
-              <span>Loan Requests</span>
-              <?php
-              if (PendingApprovals($user['Role']) != 0) {
-              ?>
-                <small class="label pull-right bg-red">
-                  <?php
-                  echo number_format(PendingApprovals($user['Role']));
-                  ?>
-                </small>
-              <?php
-              }
-              ?>
-            </a>
-          </li>
-
-          <!--Loan Payments-->
-          <li>
-            <a href="loanPayments.php">
-              <span class="glyphicon glyphicon-list-alt"></span>
-              <span>Loan Payments</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-money"></i> <span>Administrative Fees</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="bankcharges.php"><i class="fa fa-circle-o"></i> Bank Charges</a></li>
-            </ul>
-          </li> <!-- //Admin Fees-->
+        <!--Loan Payments-->	
+		<li>
+          <a href="loanPayments.php">
+          <span class="glyphicon glyphicon-list-alt"></span>
+            <span>Loan Payments</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-money"></i> <span>Administrative Fees</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="bankcharges.php"><i class="fa fa-circle-o"></i> Bank Charges</a></li>
+          </ul>
+        </li> <!-- //Admin Fees-->
           <!-- //Notifications-->
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-bell-o"></i> <span>Notifications</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i>
-                  <span>SMS</span>
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="sms.php"><span class="glyphicon glyphicon-send"></span></i> Sent SMS</a></li>
-                  <li><a href="scheduledSMS.php"><span class="glyphicon glyphicon-list-alt"></span> Scheduled SMS</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li><!-- //Notifications-->
-        </ul>
-      </section>
-      <!-- /.sidebar -->
-    </aside>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-bell-o"></i> <span>Notifications</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i>
+            <span>SMS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="sms.php"><span class="glyphicon glyphicon-send"></span></i> Sent SMS</a></li>
+            <li><a href="scheduledSMS.php"><span class="glyphicon glyphicon-list-alt"></span> Scheduled SMS</a></li>
+          </ul>
+         </li>
+          </ul>
+        </li><!-- //Notifications-->
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
@@ -169,7 +167,7 @@
             <div class="box box-primary">
               <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive" src="<?php echo $member['ProfilePicture']; ?>" alt="User profile picture">
-                <h4 class="text-center"><?php echo $member['Name'] . "<br/> " . $member['AccNumber']; ?></h3>
+                <h4 class="text-center"><?php echo $member['Fullname'] . "<br/> " . $member['AccNumber']; ?></h3>
               </div>
               <!-- /.box-body -->
             </div>
@@ -179,6 +177,10 @@
             <div class="box box-primary">
               <!-- /.box-header -->
               <div class="box-body">
+                <strong><i class="fa fa-calendar"></i> Date Joined</strong>
+                <p class="text-muted">
+                  <?php echo date_format(date_create($member['Joining_date']), 'd-M-Y'); ?>
+                </p>
 
                 <strong><i class="fa fa-phone"></i> Mobile</strong>
                 <p class="text-muted">
@@ -190,30 +192,25 @@
                   <?php echo $member['EmailAddress']; ?>
                 </p>
 
+
                 <strong><i class="fa fa-calendar"></i> Last Update</strong>
                 <p class="text-muted">
                   <?php echo date_format(date_create($member['DateUpdated']), 'd-M-Y H:i'); ?>
                 </p>
-
-                <strong><i class="fa fa-calendar"></i> Last Login</strong>
-                <p class="text-muted">
-                  <?php echo date_format(date_create($member['LastLogin']), 'd-M-Y H:i'); ?>
-                </p>
                 <br />
-                <?php if ($user['Role'] == 1) { //Only System Admin
-                ?>
+                <?php if ($user['Role'] == 1) { ?>
                   <strong><i class="fa fa-gear margin-r-5"></i> Actions</strong>
                   <p>
-                    <a title="Edit Member Profile" href="#editMember" data-id="<?php echo $member['Id'] ?>" data-toggle="modal"><span class="label label-success">Edit Account</span></a>
-                    <a href="#"><span class="label label-warning" onclick="ResetPass('<?php echo $member['AccNumber'] ?>');">Reset Password</span></a>
+                    <a title="Edit Member Profile" href="#editMember" data-id="<?php echo $member['AccNumber'] ?>" data-toggle="modal"><span class="label label-success">Edit Account</span></a>
+                    <a style="cursor: pointer"><span class="label label-warning" onclick="ResetPass('<?php echo $member['AccNumber'] ?>');">Reset Password</span></a>
                     <?php
                     if ($member['AccStatus'] == "Active") {
                     ?>
-                      <a href="#"><span class="label label-danger" onclick="DeActivateAcc('<?php echo $member['Name'] ?>','<?php echo $member['AccNumber'] ?>', 'DeActivate');">Deactivate Account</span></a>
+                      <a style="cursor: pointer"><span class="label label-danger" onclick="DeActivateAcc('<?php echo $member['Fullname'] ?>','<?php echo $member['AccNumber'] ?>', 'DeActivate');">Deactivate Account</span></a>
                     <?php }
                     if ($member['AccStatus'] == "Inactive") {
                     ?>
-                      <a href="#"><span class="label label-success" onclick="DeActivateAcc('<?php echo $member['Name'] ?>','<?php echo $member['AccNumber'] ?>', 'Activate');">Activate Account</span></a>
+                      <a style="cursor: pointer"><span class="label label-success" onclick="DeActivateAcc('<?php echo $member['Fullname'] ?>','<?php echo $member['AccNumber'] ?>', 'Activate');">Activate Account</span></a>
                     <?php } ?>
                   </p>
                 <?php } ?>
@@ -227,17 +224,85 @@
           <div class="col-md-9">
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#Savings" data-toggle="tab"><strong>Savings</strong></a></li>
+                <li class="active"><a href="#Welfare" data-toggle="tab"><strong>Welfare</strong></a></li>
+                <li><a href="#Savings" data-toggle="tab"><strong>Savings</strong></a></li>
                 <li><a href="#LoanRequests" data-toggle="tab"><strong>Loan Requests</strong></a></li>
                 <li><a href="#LoanPayments" data-toggle="tab"><strong>Loan Payments</strong></a></li>
-                <li><a href="#Welfare" data-toggle="tab"><strong>Welfare</strong></a></li>
                 <li><a href="#NextofKin" data-toggle="tab"><strong>Next of Kin</strong></a></li>
               </ul>
               <div class="tab-content">
-                <!--Savings Tab-Pane -->
-                <div class="tab-pane active" id="Savings">
+                <!--Welfare Tab-Pane -->
+                <div class="active tab-pane" id="Welfare">
                   <div class="box-body table-responsive">
-                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example1', '<?php echo $member['Name'] . '-' . $member['AccNumber'] ?>-Savings')" />
+                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example5', '<?php echo $member['Fullname'] . '-' . $member['AccNumber'] ?>-Welfare')" />
+                    <!-- /.box-header -->
+                    <table id="example5" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Amount(UGX)</th>
+                          <th>Payment Mode</th>
+                          <th>Narration</th>
+                          <th>Receipt No.</th>
+                          <th>Receipt</th>
+                          <th>Payment Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $cnt = 1;
+                        $sumWelfares = 0;
+                        $welfares = DB::query('SELECT * from welfare where AccNumber=%s order by DateCreated desc', $AccNumber);
+                        foreach ($welfares as $welfare) {
+                        ?>
+                          <tr>
+                            <td><?php echo $cnt; ?></td>
+                            <td><?php echo number_format($welfare['Amount']); ?></td>
+                            <td><?php echo $welfare['PaymentMode']; ?></td>
+                            <td><?php echo $welfare['Narration']; ?></td>
+                            <td><?php echo $welfare['ReceiptNumber']; ?></td>
+                            <td>
+                              <?php
+                              if ($welfare['ReceiptImage'] != NULL) {
+                              ?>
+                                <a class="image-popup-no-margins" href="<?php echo $welfare['ReceiptImage']; ?>">
+                                  <img class="img-responsive borderImg" src="<?php echo $welfare['ReceiptImage']; ?>" width="30" height="50">
+                                </a>
+                              <?php
+                              } else {
+                              ?>
+                                <i class="fa fa-warning" style="color:orange" title="No Attachment"></i>
+                                </a>
+                              <?php } ?>
+                            </td>
+                            <td><?php echo date_format(date_create($welfare['PaymentDate']), 'd-m-Y'); ?></td>
+                          </tr>
+                        <?php
+                          $cnt++;
+                          $sumWelfares += $welfare['Amount'];
+                        }
+                        ?>
+                      </tbody>
+                      <!--Summary of the Values-->
+                      <tfoot>
+                        <tr style="font-weight:bold; font-size:14px; background-color:#E3DAFF">
+                          <td>
+                            Total Welfare:
+                          </td>
+                          <td>
+                            <?php echo 'UGX ' . number_format($sumWelfares); ?>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.tab-pane Welfare-->
+
+                <!--Savings Tab-Pane -->
+                <div class="tab-pane" id="Savings">
+                  <div class="box-body table-responsive">
+                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example1', '<?php echo $member['Fullname'] . '-' . $member['AccNumber'] ?>-Savings')" />
                     <!-- /.box-header -->
                     <table id="example1" class="table table-bordered table-striped small">
                       <thead>
@@ -300,7 +365,7 @@
                   </div>
                 </div>
                 <!-- /.tab-pane Savings-->
-                <!--Shares Tab-Pane -->
+                <!--Welfare Tab-Pane -->
                 <div class="tab-pane" id="LoanRequests">
                   <i style="cursor:pointer;color:teal;font-size:15px" title="Information" class="fa fa-info-circle" onclick="ShowLables()"></i>
                   <h6 id="LR-Labels" style="display:none">
@@ -310,7 +375,7 @@
                     <label><i class="fa fa-square-o btn-success"></i>Cleared</label>
                   </h6>
                   <div class="box-body table-responsive">
-                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example3', '<?php echo $member['Name'] . '-' . $member['AccNumber'] ?>-Loan Requests')" />
+                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example3', '<?php echo $member['Fullname'] . '-' . $member['AccNumber'] ?>-Loan Requests')" />
                     <!-- /.box-header -->
                     <table id="example3" class="table small table-bordered">
                       <thead>
@@ -352,23 +417,19 @@
                                 echo 'style="color:crimson"';
                               } ?>><?php echo number_format($loanBalance); ?></td>
                           <td>
-                            <?php if ($loan['LoanType'] == "Main") { #Only Main Loans 
-                            ?>
-                              <i style="cursor:pointer;color:teal;font-size:15px" title="Guarantors List" class="fa fa-user-circle"
-                                onclick="ViewGuarantors('<?php echo $loan['LoanId'] ?>',
+                            <i style="cursor:pointer;color:teal;font-size:15px" title="Guarantors List" class="fa fa-user-circle"
+                              onclick="ViewGuarantors('<?php echo $loan['LoanId'] ?>',
                       '<?php
-                              $cnt = 1;
-                              $guarantors = DB::query('SELECT * from guarantors where LoanId=%s', $loan['LoanId']);
-                              foreach ($guarantors as $guarantor) {
-                                $Guarantor_name = DB::queryFirstRow('SELECT * from members where AccNumber=%s', $guarantor['AccNumber']);
-                                echo $cnt . '. ' . $Guarantor_name['Name'] . ' >>> |' . number_format($guarantor['Amount']) . '| >>> |' . $guarantor['Status'] . '| >> ' . $guarantor['Comments'] . '<br/>';
-                                $cnt++;
-                              }
+                          $cnt = 1;
+                          $guarantors = DB::query('SELECT * from guarantors where LoanId=%s', $loan['LoanId']);
+                          foreach ($guarantors as $guarantor) {
+                            $Guarantor_name = DB::queryFirstRow('SELECT * from members where AccNumber=%s', $guarantor['AccNumber']);
+                            echo $cnt . '. ' . $Guarantor_name['Fullname'] . ' >>> |' . number_format($guarantor['Amount']) . '| >>> |' . $guarantor['Status'] . '| >> ' . $guarantor['Comments'] . '<br/>';
+                            $cnt++;
+                          }
                         ?>'
                       );">
-                              </i>
-                            <?php } #Only Main Loans
-                            ?>
+                            </i>
                           </td>
                           <td><?php echo $loan['Status'];
                               if ($loan['Status'] == "REJECTED") {
@@ -385,11 +446,11 @@
                     </table>
                   </div>
                 </div>
-                <!-- /.tab-pane Shares-->
+                <!-- /.tab-pane Welfare-->
                 <!--LoanPayments Tab-Pane -->
                 <div class="tab-pane" id="LoanPayments">
                   <div class="box-body table-responsive">
-                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example4', '<?php echo $member['Name'] . '-' . $member['AccNumber'] ?>-Loan Payments')" />
+                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example4', '<?php echo $member['Fullname'] . '-' . $member['AccNumber'] ?>-Loan Payments')" />
                     <!-- /.box-header -->
                     <table id="example4" class="table small table-bordered table-striped">
                       <thead>
@@ -400,7 +461,6 @@
                           <th>Total Amount</th>
                           <th>Installment Paid</th>
                           <th>Balance</th>
-                          <th>Receipt</th>
                           <th>Date Added</th>
                         </tr>
                       </thead>
@@ -417,20 +477,6 @@
                           <td><?php echo number_format($loan['TotalAmount']); ?></td>
                           <td><?php echo number_format($loan['AmountPaid']); ?></td>
                           <td><?php echo number_format($loan['Balance']); ?></td>
-                          <td>
-                            <?php
-                            if ($loan['PaymentReceipts'] != NULL) {
-                            ?>
-                              <a class="image-popup-no-margins" href="<?php echo $loan['PaymentReceipts']; ?>">
-                                <img class="img-responsive borderImg" src="<?php echo $loan['PaymentReceipts']; ?>" width="30" height="50">
-                              </a>
-                            <?php
-                            } else {
-                            ?>
-                              <i class="fa fa-warning" style="color:orange" title="No Attachment"></i>
-                              </a>
-                            <?php } ?>
-                          </td>
                           <td><?php echo date_format(date_create($loan['DateAdded']), 'd-m-Y'); ?></td>
                           </tr>
                         <?php
@@ -456,50 +502,6 @@
                 </div>
                 <!-- /.tab-pane LoanPayments-->
 
-                <!--Welfare Tab-Pane -->
-                <div class="tab-pane" id="Welfare">
-                  <div class="box-body table-responsive">
-                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example6', '<?php echo $member['Name'] . '-' . $member['AccNumber'] ?>-Membership Fees')" />
-                    <!-- /.box-header -->
-                    <table id="example6" class="table small table-bordered table-striped">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Amount Paid</th>
-                          <th>Payment Date</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $cnt = 1;
-                        $sumFees = 0;
-                        $memShipFees = DB::query('SELECT * from welfare where AccNumber=%s', $AccNumber);
-                        foreach ($memShipFees as $memShipFee) {
-                        ?>
-                          <tr title="Added by: <?php echo $memShipFee['CreatedBy']; ?>">
-                            <td><?php echo $cnt; ?></td>
-                            <td><?php echo number_format($memShipFee['Amount']); ?></td>
-                            <td><?php echo date_format(date_create($memShipFee['DateAdded']), 'd-m-Y'); ?></td>
-                          </tr>
-                        <?php
-                          $cnt++;
-                          $sumFees += $memShipFee['Amount'];
-                        }
-                        ?>
-                      </tbody>
-                      <tfoot>
-                        <tr style="font-weight:bold; font-size:14px; background-color:#E3DAFF">
-                          <td>
-                            Total Paid:</td>
-                          <td>
-                            <?php echo 'UGX ' . number_format($sumFees); ?>
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                  </div>
-                </div>
-                <!-- /.tab-pane LoanPayments-->
                 <!--Nexk of Kin Tab-Pane -->
                 <div class="tab-pane" id="NextofKin">
                   <div class="card-header-action">
@@ -543,6 +545,7 @@
                     </table>
                   </div>
                 </div>
+                <!-- /.tab-pane LoanPayments-->
               </div>
               <!-- /.tab-content -->
             </div>
@@ -553,8 +556,9 @@
       </section>
       <!-- /.content -->
     </div>
-      <!-- Next of Kin div -->
-      <div class="modal fade" id="addkin">
+  <!-- /.content-wrapper -->
+       <!-- Next of Kin div -->
+       <div class="modal fade" id="addkin">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header bg-blue">
@@ -564,7 +568,7 @@
           </div>
           <form role="form" class="form-content" method="POST" action="ManageNextofKin.php">
             <input type="hidden" name="kin_action" value="Create">
-            <input type="hidden" name="MembershipNumber" value="<?php echo $MembershipNumber; ?>">
+            <input type="hidden" name="AccNumber" value="<?php echo $AccNumber; ?>">
             <div class="modal-body mt-2">
               <div class="form-group col-sm-3">
                 <label for="Amount">Fullname</label>
@@ -593,151 +597,141 @@
       </div>
       <!-- /.modal-dialog -->
     </div>
-    <!-- /.content-wrapper -->
-    <?php include('externalScripts.php'); ?>
-
-    <!-- Edit Clients Modal-->
+<?php include('externalScripts.php');?>
+    
+<!-- Edit Clients Modal-->
     <div class="modal fade" id="editMember">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content ">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
 
-          <div class="fetched-data"></div> <!--Fetched Header and body-->
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-        <!-- /.modal-content -->
+    <div class="fetched-data"></div> <!--Fetched Header and body-->
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
       </div>
-      <!-- /.modal-dialog -->
     </div>
-    <script>
-      $(document).ready(function() {
-        $('#editMember').on('show.bs.modal', function(e) {
-
-          var MemberID = $(e.relatedTarget).data('id');
-          $.ajax({
-            type: 'post',
-            url: 'member_modal.php', //Here you will fetch records 
-            data: 'MemberID=' + MemberID, //Pass $id
-            success: function(data) {
-              $('.fetched-data').html(data); //Show fetched data from database
-              $('.ModalDatepicker').datepicker();
+    <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <script>
+$(document).ready(function(){
+    $('#editMember').on('show.bs.modal', function (e) {
+      
+        var MemberID = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'member_modal.php', //Here you will fetch records 
+            data :  'MemberID='+ MemberID, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            $('.ModalDatepicker').datepicker();
             }
-
-          });
+            
         });
+     });
+     
+});
+</script>
 
-      });
-    </script>
+<script>
+	function ViewReason(LoanId,Reason){
+		//Prompt user to confirm
+		alertify.alert('#'+LoanId+' - Reason for Rejection.',Reason);	
+		}
+    function ViewGuarantors(LoanId,List){
+    //Prompt user to confirm
+    alertify.alert('Loan #'+LoanId+' - Guarantors',List);	
+  }
+</script>
 
-    <script>
-      function ViewReason(LoanId, Reason) {
-        //Prompt user to confirm
-        alertify.alert('#' + LoanId + ' - Reason for Rejection.', Reason);
-      }
+<script>
+//Show the LR Lables
+function ShowLables() {
+  var x = document.getElementById("LR-Labels");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 
-      function ViewGuarantors(LoanId, List) {
-        //Prompt user to confirm
-        alertify.alert('Loan #' + LoanId + ' - Guarantors', List);
-      }
-    </script>
-
-    <script>
-      //Show the LR Lables
-      function ShowLables() {
-        var x = document.getElementById("LR-Labels");
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }
-    </script>
-
-    <script>
-      $(function() {
-        //Date picker
-        $('#datepicker').datepicker({
-          autoclose: true,
-          todayHighlight: true,
-          endDate: "currentDate",
-        })
-      })
-
-      $(function() {
-        $('#example1').DataTable()
-        $('#example3').DataTable({
-          'order': [
-            [8, "desc"]
-          ]
-        })
-        $('#example4').DataTable()
-        $('#example5').DataTable()
-        $('#example6').DataTable()
-        $('#example2').DataTable({
-          'paging': true,
-          'lengthChange': false,
-          'searching': false,
-          'ordering': true,
-          'info': true,
-          'autoWidth': false
-        })
-      })
-    </script>
-    <script>
-      //Approve Loan
-      function DeActivateAcc(Name, AccNumber, Action) {
-        //Prompt user to confirm
-        alertify.confirm(Action + " Account", "Are you sure you want to " + Action + " " + Name + "'s account?", function() {
-          var hr = new XMLHttpRequest();
-          var url = "DeActivateAcc.php";
-          //Post to file without refreshing page
-          var vars = "AccNumber=" + AccNumber + "&Action=" + Action;
-          hr.open("POST", url, true);
-          hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          hr.onreadystatechange = function() {
-            if (hr.readyState == 4 && hr.status == 200) {
-              var return_data = hr.responseText;
-              alertify.alert('Response', return_data);
-
-              function redirect() {
-                window.location.href = "allMembers.php"
-              }
-              setTimeout(redirect, 3000);
-            }
-          }
-          hr.send(vars);
-        }, function() {});
-      }
+<script>
+ $(function () {
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true,
+      todayHighlight: true,
+      endDate: "currentDate",
+    })
+  })
+  
+    $(function () {
+    $('#example1').DataTable()
+    $('#example3').DataTable({
+      'order'    : [[8 , "desc" ]]
+    })
+    $('#example4').DataTable()
+    $('#example5').DataTable()
+    $('#example6').DataTable()
+    $('#example7').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+<script>
+//Approve Loan
+function DeActivateAcc(Name,AccNumber,Action){
+		//Prompt user to confirm
+		alertify.confirm(Action+" Account" ,"Are you sure you want to "+Action+" "+Name+"'s account?", function(){ 
+		 var hr = new XMLHttpRequest();
+	     var url = "DeActivateAcc.php";
+	//Post to file without refreshing page
+    var vars = "AccNumber="+AccNumber+"&Action="+Action;
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.onreadystatechange = function() {
+	    if(hr.readyState == 4 && hr.status == 200) {
+		    var return_data = hr.responseText;
+			alertify.alert('Response',return_data);
+			function redirect(){window.location.href = "allMembers.php"}
+			setTimeout(redirect, 3000);
+		}	}
+    hr.send(vars);
+		}, function(){  });	
+		}
 
 
-      function ResetPass(AccNumber) {
-        //Prompt user to confirm
-        alertify.confirm("Reset Password", "Are you sure you want to reset the password for this account?", function() {
-          var hr = new XMLHttpRequest();
-          var url = "DeActivateAcc.php";
-          //Post to file without refreshing page
-          var vars = "AccNumber=" + AccNumber + "&Action=" + "Reset";
-          hr.open("POST", url, true);
-          hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          hr.onreadystatechange = function() {
-            if (hr.readyState == 4 && hr.status == 200) {
-              var return_data = hr.responseText;
-              alertify.alert('Response', return_data);
-
-              function redirect() {
-                window.location.href = "allMembers.php"
-              }
-              //setTimeout(redirect, 3000);
-            }
-          }
-          hr.send(vars);
-        }, function() {});
-      }
-    </script>
-      <!-- Edit Modal-->
-      <div class="modal fade" id="editNextofkin">
+    function ResetPass(AccNumber){
+		//Prompt user to confirm
+		alertify.confirm("Reset Password","Are you sure you want to reset the password for this account?", function(){ 
+		 var hr = new XMLHttpRequest();
+	     var url = "DeActivateAcc.php";
+	//Post to file without refreshing page
+  var vars = "AccNumber="+AccNumber+"&Action="+"Reset";
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.onreadystatechange = function() {
+	    if(hr.readyState == 4 && hr.status == 200) {
+		    var return_data = hr.responseText;
+			alertify.alert('Response',return_data);
+			function redirect(){window.location.href = "allMembers.php"}
+			//setTimeout(redirect, 3000);
+		}	}
+    hr.send(vars);
+		}, function(){  });	
+		}
+    
+</script>
+ <!-- Edit Modal-->
+ <div class="modal fade" id="editNextofkin">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
 
@@ -797,5 +791,4 @@
     </script>
 
 </body>
-
 </html>
