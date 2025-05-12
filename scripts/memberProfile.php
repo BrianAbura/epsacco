@@ -553,6 +553,46 @@
       </section>
       <!-- /.content -->
     </div>
+      <!-- Next of Kin div -->
+      <div class="modal fade" id="addkin">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-blue">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h5 class="modal-title">Add Next Of Kin</h5>
+          </div>
+          <form role="form" class="form-content" method="POST" action="ManageNextofKin.php">
+            <input type="hidden" name="kin_action" value="Create">
+            <input type="hidden" name="MembershipNumber" value="<?php echo $MembershipNumber; ?>">
+            <div class="modal-body mt-2">
+              <div class="form-group col-sm-3">
+                <label for="Amount">Fullname</label>
+                <input type="text" class="form-control" name="Fullname" placeholder="Enter Fullname" required autocomplete="off" />
+              </div>
+              <div class="form-group col-sm-3">
+                <label for="Amount">Phone Number</label>
+                <input type="text" class="form-control" name="Phone_Number" placeholder="Enter Phone Number" required autocomplete="off" />
+              </div>
+              <div class="form-group col-sm-3">
+                <label for="Amount">Email Address</label>
+                <input type="email" class="form-control" name="Email_Address" placeholder="Enter Email Address" required autocomplete="off" />
+              </div>
+              <div class="form-group col-sm-3">
+                <label for="Amount">Relationship</label>
+                <input type="text" class="form-control" name="Relationship" placeholder="Enter Relationship" required autocomplete="off" />
+              </div>
+            </div>
+            <div class="modal-footer mt-2">
+              <button type="submit" class="btn btn-success">Add Next of Kin</button>
+              <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
     <!-- /.content-wrapper -->
     <?php include('externalScripts.php'); ?>
 
