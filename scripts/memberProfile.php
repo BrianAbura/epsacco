@@ -696,6 +696,65 @@
         }, function() {});
       }
     </script>
+      <!-- Edit Modal-->
+      <div class="modal fade" id="editNextofkin">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+
+          <div class="fetched-data"></div> <!--Fetched Header and body-->
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $('#editNextofkin').on('show.bs.modal', function(e) {
+          var nokID = $(e.relatedTarget).data('id');
+          var kin_action = 'Edit';
+          $.ajax({
+            type: 'post',
+            url: 'Modal_nok.php', //Here you will fetch records 
+            data: 'nokID=' + nokID + '&kin_action=' + kin_action, //Pass $id
+            success: function(data) {
+              $('.fetched-data').html(data); //Show fetched data from database
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="delNextofkin">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+
+          <div class="fetched-data"></div> <!--Fetched Header and body-->
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $('#delNextofkin').on('show.bs.modal', function(e) {
+          var nokID = $(e.relatedTarget).data('id');
+          var kin_action = 'Delete';
+          $.ajax({
+            type: 'post',
+            url: 'Modal_nok.php', //Here you will fetch records 
+            data: 'nokID=' + nokID + '&kin_action=' + kin_action, //Pass $id
+            success: function(data) {
+              $('.fetched-data').html(data); //Show fetched data from database
+            }
+          });
+        });
+      });
+    </script>
 
 </body>
 
