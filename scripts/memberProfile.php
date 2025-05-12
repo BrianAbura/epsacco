@@ -167,7 +167,7 @@
             <div class="box box-primary">
               <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive" src="<?php echo $member['ProfilePicture']; ?>" alt="User profile picture">
-                <h4 class="text-center"><?php echo $member['Fullname'] . "<br/> " . $member['AccNumber']; ?></h3>
+                <h4 class="text-center"><?php echo $member['Name'] . "<br/> " . $member['AccNumber']; ?></h3>
               </div>
               <!-- /.box-body -->
             </div>
