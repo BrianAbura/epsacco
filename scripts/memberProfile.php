@@ -506,7 +506,7 @@
                     <a data-toggle="modal" data-target="#addkin" class="btn btn-sm btn-primary">Add Next of Kin</a>
                   </div>
                   <div class="box-body table-responsive">
-                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example7', '<?php echo $member['Fullname'] . '-' . $member['MembershipNumber'] ?>-Next of Kin')" />
+                    <img class="borderDloadImg" src="../dist/img/excel_download.png" title="Export to Excel" onclick="ExportToExcel('example7', '<?php echo $member['Fullname'] . '-' . $member['AccNumber'] ?>-Next of Kin')" />
                     <!-- /.box-header -->
                     <table id="example7" class="table small table-bordered table-striped">
                       <thead>
@@ -522,7 +522,7 @@
                       <tbody>
                         <?php
                         $cnt = 1;
-                        $next_of_kin = DB::query('SELECT * from next_of_kin where MembershipNumber=%s', $MembershipNumber);
+                        $next_of_kin = DB::query('SELECT * from next_of_kin where AccNumber=%s', $AccNumber);
                         foreach ($next_of_kin as $member) {
                         ?>
                           <tr>

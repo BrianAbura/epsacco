@@ -224,7 +224,7 @@
                       </thead>
                       <tbody>
                         <?php
-                        $next_of_kin = DB::query('SELECT * from next_of_kin where MembershipNumber=%s order by Id desc', $_SESSION['MembershipNumber']);
+                        $next_of_kin = DB::query('SELECT * from next_of_kin where AccNumber=%s order by Id desc', $_SESSION['AccNumber']);
                         $cnt = 1;
                         foreach ($next_of_kin as $member) {
                         ?>

@@ -4,7 +4,7 @@
 require_once('../defines/functions.php');
 require_once('../validate.php');
 
-$MembershipNumber = htmlspecialchars((isset($_REQUEST['MembershipNumber'])) ?  $_REQUEST['MembershipNumber'] : null);
+$AccNumber = htmlspecialchars((isset($_REQUEST['AccNumber'])) ?  $_REQUEST['AccNumber'] : null);
 $kin_action = htmlspecialchars((isset($_REQUEST['kin_action'])) ?  $_REQUEST['kin_action'] : null);
 $nok_id = htmlspecialchars((isset($_REQUEST['nok_id'])) ?  $_REQUEST['nok_id'] : null);
 
@@ -16,7 +16,7 @@ $Relationship = htmlspecialchars((isset($_REQUEST['Relationship'])) ?  $_REQUEST
 if ($kin_action == "Create") {
     # Add Next of Kin
     $NewMember = array(
-        'MembershipNumber' => $MembershipNumber,
+        'AccNumber' => $AccNumber,
         'Fullname' => $Fullname,
         'MSISDN' => $Phone_Number,
         'EmailAddress' => $Email_Address,
@@ -25,11 +25,11 @@ if ($kin_action == "Create") {
 
     DB::insert('next_of_kin', $NewMember);
     $_SESSION['Success'] = "Next of Kin Saved Successfully.";
-    header("Location:memberProfile.php?MembershipNumber=" . $MembershipNumber);
+    header("Location:memberProfile.php?AccNumber=" . $AccNumber);
 } elseif ($kin_action == "Edit") {
 
     $UpdateMember = array(
-        'MembershipNumber' => $MembershipNumber,
+        'AccNumber' => $AccNumber,
         'Fullname' => $Fullname,
         'MSISDN' => $Phone_Number,
         'EmailAddress' => $Email_Address,
@@ -38,10 +38,10 @@ if ($kin_action == "Create") {
 
     DB::update('next_of_kin', $UpdateMember, 'Id=%s', $nok_id);
     $_SESSION['Success'] = "Next of Kin Details updated Successfully.";
-    header("Location:memberProfile.php?MembershipNumber=" . $MembershipNumber);
+    header("Location:memberProfile.php?AccNumber=" . $AccNumber);
 } else {
     // Delete
     DB::delete('next_of_kin', "Id=%s", $nok_id);
     $_SESSION['Success'] = "Next of Kin has been removed.";
-    header("Location:memberProfile.php?MembershipNumber=" . $MembershipNumber);
+    header("Location:memberProfile.php?AccNumber=" . $AccNumber);
 }
