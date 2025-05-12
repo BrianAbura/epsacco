@@ -25,6 +25,11 @@ if($Principal > 20000000){
 	header('Location: requestLoan.php');
 	exit();
 }
+if(empty($Interest) || empty($TotalAmount) || empty($GuarantorAmount)){
+	$_SESSION['Error'] = "Please fill in all the required fields.";
+	header('Location: requestLoan.php');
+	exit();
+}
 
 if($LoanType == "Top-Up"){
 	//In-case you have an outstanding top-up loan
