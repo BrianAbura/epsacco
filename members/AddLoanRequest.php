@@ -2,7 +2,7 @@
 require_once('../defines/functions.php');
 require_once('../validate.php');
 
-$LoanId = genSavId();
+$LoanId = genLoanId();
 $AccNumber = $_SESSION['AccNumber'];
 $LoanType = htmlspecialchars(( isset( $_REQUEST['LoanType'] ) )?  $_REQUEST['LoanType']: null);
 $Principal = htmlspecialchars(( isset( $_REQUEST['Amount'] ) )?  $_REQUEST['Amount']: null);
