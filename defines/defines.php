@@ -10,7 +10,8 @@ define('DB_PASS', '24@DBpass73');
 define('DB_NAME', 'egpsavings');
 
 /** SMS */
-define('SMS_URL', 'https://www.lyptustech.com/lyptus-api/sms/');
+// define('SMS_URL', 'https://www.lyptustech.com/lyptus-api/sms/');
+define('SMS_URL', 'http://109.74.198.99/lyptus-api/sms/');
 define('SMS_USER', 'EGIC-SMS-21002-EGIC2021');
 define('SMS_PASS', 'EGIC-200-222345-SMS2021');
 define('CLIENT_ID', '82354');
