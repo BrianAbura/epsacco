@@ -31,11 +31,12 @@ foreach($Loans as $Loan){
 			$Member = DB::queryFirstRow('SELECT * from members where AccNumber=%s',$Loan['AccNumber']);
 		//On Due Date
 		//Enforce 10% on the Periods exceeding current
+		//Adjust to remain the same after loan period
 			$interval = date_diff(date_create($Loan['DateCreated']), date_create($curDate));
 			$interval = ($interval->format('%y')*12) + $interval->format('%m');
 			if($interval >= $Loan['LoanPeriod'])
 			{
-			$Rate = 10;
+			$Rate = $Loan['Rate'];
 			}
 			else{
 			$Rate = $Loan['Rate'];
