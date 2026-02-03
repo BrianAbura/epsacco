@@ -34,7 +34,7 @@ foreach($Loans as $Loan){
 		//Adjust to remain the same after loan period
 			$interval = date_diff(date_create($Loan['DateCreated']), date_create($curDate));
 			$interval = ($interval->format('%y')*12) + $interval->format('%m');
-			if($interval >= $Loan['LoanPeriod'])
+			if($interval > $Loan['LoanPeriod'])
 			{
 			$Rate = $Loan['Rate'];
 			}
