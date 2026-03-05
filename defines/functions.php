@@ -256,7 +256,7 @@ function newExpectedMemberSavings()
 	$Years = date('Y', strtotime($CurrentDate)) - date('Y', strtotime($StartDate)); #Full Years
 	$Months = date('m', strtotime($CurrentDate)) - date('m', strtotime($StartDate)); #Full Months
 	$TotalMonths = ($Years * 12) + $Months;
-	$TotalAmount = $TotalMonths * 50000;
+	$TotalAmount = $TotalMonths * 100000;
 	$expectedAmount += $TotalAmount;
 	return $expectedAmount;
 }

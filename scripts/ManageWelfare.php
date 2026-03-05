@@ -33,7 +33,7 @@ if($WelfareAction == "Add_New_Welfare"){
 	$Fullname = $Fullname['Name'];
 
 	$CheckWelfare = DB::queryFirstRow('SELECT sum(Amount) as total from welfare where AccNumber=%s AND Narration=%s', $AccNumber, $Narration);
-	if($CheckWelfare['total'] >= 600000){
+	if($CheckWelfare['total'] >= 1000000){
 			$_SESSION['Error'] = $Fullname." <b>".$Narration."</b> has already been fully cleared.";
 	}
 	else{
@@ -75,7 +75,7 @@ if($WelfareAction == "Add_New_Welfare"){
 		$TableId = "WF - ".DB::insertId();
 		$TotalWelfare = DB::queryFirstRow('SELECT sum(Amount) from welfare where AccNumber=%s', $AccNumber);
 		$Balance =  DB::queryFirstRow('SELECT sum(Amount) from welfare where AccNumber=%s AND Narration=%s', $AccNumber, $Narration);
-		$Balance = 600000 - $Balance['sum(Amount)'];
+		$Balance = 1000000 - $Balance['sum(Amount)'];
 
 		$SMS = "Your ".$Narration." of UGX".number_format($Amount)." to e-GP Investment Club has been captured. Welfare Balance for ".$NarrationYear." is UGX".number_format($Balance).". Total welfare collection is UGX".number_format($TotalWelfare['sum(Amount)']);
 		SendSms(formatNumber($Member['MSISDN']), $SMS, $TableId, "SYSTEM");
