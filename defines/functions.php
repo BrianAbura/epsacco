@@ -261,18 +261,6 @@ function newExpectedMemberSavings()
 	return $expectedAmount;
 }
 
-function newSavingsUpdated()
-{
-	$expectedAmount = 0;
-	$CurrentDate = date('Y-m-d');
-	$StartDate = "2026-04-01"; // Updated Date of march 2026 with 50k added
-	$Years = date('Y', strtotime($CurrentDate)) - date('Y', strtotime($StartDate)); #Full Years
-	$Months = date('m', strtotime($CurrentDate)) - date('m', strtotime($StartDate)); #Full Months
-	$TotalMonths = ($Years * 12) + $Months;
-	$TotalAmount = $TotalMonths * 100000;
-	$expectedAmount += $TotalAmount;
-	return $expectedAmount;
-}
 
 //Expected Indivdual Savings
 function ExpectedMemberSavings()
@@ -285,7 +273,7 @@ function ExpectedMemberSavings()
 	$TotalMonths = ($Years * 12) + $Months + 2;
 	$TotalAmount = $TotalMonths * 100000;
 	$expectedAmount += $TotalAmount;
-	return ($expectedAmount + newExpectedMemberSavings() + newSavingsUpdated());
+	return ($expectedAmount + newExpectedMemberSavings() + 50000);
 	// return $expectedAmount;
 }
 
